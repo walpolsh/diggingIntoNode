@@ -118,3 +118,5 @@ function processFile(contents) {
 //cat files/hello.txt | ./ex1.js --in     tells the shell to pipe the process through stdin instead
 //cat files/hello.txt | ./ex1.js -        also works
 // | is the pipe operator, it's saying take the output of files/hello.txt and pipe it into the stdin of ex1.js
+
+//cp ex1.js ex2.js to copy one file into another
