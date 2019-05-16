@@ -9,11 +9,10 @@ var path = require("path");
 var sqlite3 = require("sqlite3");
 // var staticAlias = require("node-static-alias");
 
-
 // ************************************
 
-const DB_PATH = path.join(__dirname,"my.db");
-const WEB_PATH = path.join(__dirname,"web");
+const DB_PATH = path.join(__dirname, "my.db");
+const WEB_PATH = path.join(__dirname, "web");
 const HTTP_PORT = 8039;
 
 var delay = util.promisify(setTimeout);
@@ -22,17 +21,17 @@ var delay = util.promisify(setTimeout);
 //   (comment out if sqlite3 not working for you)
 var myDB = new sqlite3.Database(DB_PATH);
 var SQL3 = {
-	run(...args) {
-		return new Promise(function c(resolve,reject){
-			myDB.run(...args,function onResult(err){
-				if (err) reject(err);
-				else resolve(this);
-			});
-		});
-	},
-	get: util.promisify(myDB.get.bind(myDB)),
-	all: util.promisify(myDB.all.bind(myDB)),
-	exec: util.promisify(myDB.exec.bind(myDB)),
+  run(...args) {
+    return new Promise(function c(resolve, reject) {
+      myDB.run(...args, function onResult(err) {
+        if (err) reject(err);
+        else resolve(this);
+      });
+    });
+  },
+  get: util.promisify(myDB.get.bind(myDB)),
+  all: util.promisify(myDB.all.bind(myDB)),
+  exec: util.promisify(myDB.exec.bind(myDB))
 };
 
 // var fileServer = new staticAlias.Server(WEB_PATH,{
@@ -46,11 +45,10 @@ var SQL3 = {
 
 main();
 
-
 // ************************************
 
 function main() {
-	// console.log(`Listening on http://localhost:${HTTP_PORT}...`);
+  // console.log(`Listening on http://localhost:${HTTP_PORT}...`);
 }
 
 // *************************
@@ -58,8 +56,8 @@ function main() {
 //   comment this version out
 // *************************
 async function getAllRecords() {
-	var result = await SQL3.all(
-		`
+  var result = await SQL3.all(
+    `
 		SELECT
 			Something.data AS "something",
 			Other.data AS "other"
@@ -69,9 +67,9 @@ async function getAllRecords() {
 		ORDER BY
 			Other.id DESC, Something.data
 		`
-	);
+  );
 
-	return result;
+  return result;
 }
 
 // *************************
