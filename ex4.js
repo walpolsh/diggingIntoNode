@@ -81,10 +81,11 @@ async function insertOrLookupOther(other) {
 				Other
 			WHERE
 				data = ?
-		`, // ? is a value thats interpolated in SQL
+		`, // ? is a value thats interpolated in sqlite3
     other
   );
 
+  //ultimately rteurn the value
   if (result && result.id) {
     return result.id;
   } else {
