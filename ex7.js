@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 "use strict";
-
+//node --inspect ex7.js to smash
 var util = require("util");
 var childProc = require("child_process");
 
 // ************************************
 
 const HTTP_PORT = 8039;
-const MAX_SMASH = 5;
+const MAX_SMASH = 100;
 
 var delay = util.promisify(setTimeout);
 
@@ -20,7 +20,7 @@ async function main() {
   console.log(`Load testing http://localhost:${HTTP_PORT}...`);
 
   while (true) {
-    process.stdout.write(`Sending ${MAX_SMASH} requests...`);
+    process.stdout.write(`Sending ${MAX_SMASH} smashes...`);
 
     let smashes = [];
 
@@ -40,7 +40,7 @@ async function main() {
     resps = await Promise.all(resps);
 
     if (resps.every(Boolean)) {
-      console.log(" smash successful!");
+      console.log(` successful. just sent ${MAX_SMASH} smashes! `);
     } else {
       console.log(" smash failed!");
     }
